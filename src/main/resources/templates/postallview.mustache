@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Loga</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home</a>
+            <a class="nav-item nav-link" href="/posts/add">Add product</a>
+            <a class="nav-item nav-link" href="/posts/page/0">All products</a>
+            <a class="nav-item nav-link" href="/posts/user/page/0">My products</a>
+            <a class="nav-item nav-link" href="/logout">Log out</a>
+
+        </div>
+    </div>
+</nav>
+
+<h2 style="text-align: center; color: royalblue;"> Welcome! These are the blogposts.</h2>
+<div class="container">
+
+
+    <div class="card-columns" style="flex: border-box">
+        {{#posts}}
+            <div class="card" style="margin: 30px">
+                <div class="card-body">
+                    <h4>{{title}}</h4>
+                    <p>{{description}}</p>
+                    <p>How many comments:{{comments.size}}</p>
+
+                    <p><a href="/posts/allcomments/{{p_id}}">See all comments</a></p>
+                    <br>
+                    {{#no}}
+                    <a href="/addcomment/{{p_id}}">Add a comment</a>
+                    {{/no}}
+                </div>
+            </div>
+        {{/posts}}
+        <br>
+    </div>
+
+    Page {{displayableCurrentPageNumber}} of {{totalPages}}<br>
+    {{#hasPrevious}}
+        <a href="/posts/page/{{previousPageNumber}}">
+            Previous page
+        </a>
+    {{/hasPrevious}}
+    |
+    {{#hasNext}}
+        <a href="/posts/page/{{nextPageNumber}}">
+            Next page
+        </a>
+    {{/hasNext}}
+
+
+</div>
+
+</body>
+</html>
